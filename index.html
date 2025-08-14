@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Nazir is the founder of Neura, a startup creating a future with AI.">
+  <meta name="author" content="Nazir">
+  <meta name="keywords" content="Nazir, Neura, developer, AI, machine learning, startup, portfolio, technology, projects">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://nazir.io/">
+  <link rel="icon" href="https://placehold.co/32x32/a78bfa/fff?text=AI" type="image/png">
+
+  <!-- Open Graph / Social Media Meta Tags -->
+  <meta property="og:title" content="NAZIR's Website - Founder of Neura">
+  <meta property="og:description" content="NAZIR is creating a future with AI at Neura. Explore my projects and insights into machine learning.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://placehold.co/1200x630/a78bfa/0d0d10?text=Neura+AI">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="NAZIR is creating a future with AI">
+  <meta property="og:url" content="https://nazir.io/">
+  <meta property="og:site_name" content="NAZIR's Website">
+
+  <!-- Twitter Card Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="NAZIR's Website - Founder of Neura">
+  <meta name="twitter:description" content="NAZIR is creating a future with AI at Neura. Explore my projects and insights into machine learning.">
+  <meta name="twitter:image" content="https://placehold.co/1200x630/a78bfa/0d0d10?text=Neura+AI">
+
+  <title>NAZIR's Portfolio</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Ubuntu -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* CSS Variables & Theme Handling */
+    :root {
+      --bg-color: #0d0d10;
+      --text-color: #ffffff;
+      --primary-color: #a78bfa;
+      --secondary-color: #1a1a20;
+      --border-color: #3f3f46;
+      --gray-text: #a1a1a1;
+      --header-bg: rgba(13, 13, 16, 0.8);
+      --header-shadow: rgba(0, 0, 0, 0);
+      --accent-color: #4fd1c5;
+    }
+
+    .light-mode {
+      --bg-color: #ffffff;
+      --text-color: #0d0d10;
+      --primary-color: #5d31a5;
+      --secondary-color: #f3f4f6;
+      --border-color: #e5e7eb;
+      --gray-text: #6b7280;
+      --header-bg: rgba(255, 255, 255, 0.9);
+      --header-shadow: rgba(0, 0, 0, 0.08);
+      --accent-color: #1a7f76;
+    }
+
+    body {
+      font-family: 'Ubuntu', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow-x: hidden;
+      transition: background-color 0.4s ease-out, color 0.4s ease-out;
+      opacity: 0;
+      animation: fadeInBody 0.8s forwards;
+    }
+
+    @keyframes fadeInBody {
+      to {
+        opacity: 1;
+      }
+    }
+
+    /* Canvas for the animated background */
+    #background-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+
+    main {
+      flex-grow: 1;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+      font-family: 'Ubuntu', sans-serif;
+    }
+
+    /* Hero Title Gradient */
+    .hero-title {
+      font-size: clamp(3rem, 10vw, 5rem);
+      line-height: 1;
+      background: linear-gradient(90deg, var(--primary-color) 0%, var(--accent-color) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-fill-color: transparent;
+      letter-spacing: -0.05em;
+    }
+
+    /* Mobile-specific adjustments */
+    @media (max-width: 639px) {
+      .hero-title {
+        font-size: clamp(2.5rem, 12vw, 4rem);
+      }
+    }
+
+    /* Hero Text Animation */
+    .animated-text-container {
+      min-height: 1.2em;
+      display: inline-block;
+    }
+
+    .animated-word {
+      display: inline-block;
+      opacity: 0;
+      transform: translateY(10px) scale(0.95);
+      transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+    }
+
+    .animated-word.visible {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    /* Hero Text Hover Effect */
+    .hover-container:hover .hover-word {
+      transform: translateY(-5px);
+      transition-delay: 0s;
+    }
+
+    .hover-word {
+      display: inline-block;
+      transition: transform 0.2s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+      margin: 0 2px;
+      will-change: transform;
+    }
+
+    /* Staggered Delay for Hover Effect */
+    .hover-word:nth-child(2) {
+      transition-delay: 0.05s;
+    }
+
+    .hover-word:nth-child(3) {
+      transition-delay: 0.1s;
+    }
+
+    .hover-word:nth-child(4) {
+      transition-delay: 0.15s;
+    }
+
+    .hover-word:nth-child(5) {
+      transition-delay: 0.2s;
+    }
+
+    .hover-word:nth-child(6) {
+      transition-delay: 0.25s;
+    }
+
+    .hover-word:nth-child(7) {
+      transition-delay: 0.3s;
+    }
+
+    .hover-word:nth-child(8) {
+      transition-delay: 0.35s;
+    }
+
+    .hover-word:nth-child(9) {
+      transition-delay: 0.4s;
+    }
+
+    /* Fade-in-on-scroll Effect */
+    .fade-in-on-scroll {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+      transition-delay: var(--delay);
+    }
+
+    .fade-in-on-scroll.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Header on scroll effect */
+    .header-scrolled {
+      background-color: var(--header-bg);
+      backdrop-filter: blur(8px);
+      box-shadow: 0 4px 6px -1px var(--header-shadow);
+    }
+
+    /* Footer link styling */
+    .link-group {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: color 0.2s ease-out;
+    }
+
+    @media (min-width: 768px) {
+      .link-group {
+        justify-content: flex-start;
+      }
+    }
+  </style>
+</head>
+
+<body class="antialiased text-base leading-relaxed">
+
+  <!-- Header -->
+  <header id="main-header" class="sticky top-0 z-40 p-4 transition-all duration-300">
+    <nav class="container mx-auto flex flex-col sm:flex-row justify-between items-center px-4 md:px-8 space-y-4 sm:space-y-0" role="navigation" aria-label="Main Navigation">
+      <a href="#" class="text-2xl font-bold text-[var(--text-color)] transition-colors hover:text-[var(--primary-color)]">🧠 NAZIR</a>
+      <ul class="flex items-center space-x-6 sm:space-x-8 text-sm font-medium" role="list">
+        <li role="listitem"><a href="#" class="text-[var(--gray-text)] hover:text-[var(--text-color)] transition-colors duration-200">Home</a></li>
+        <li role="listitem"><a href="#about" class="text-[var(--gray-text)] hover:text-[var(--text-color)] transition-colors duration-200">About</a></li>
+        <li role="listitem"><a href="#" class="text-[var(--gray-text)] hover:text-[var(--text-color)] transition-colors duration-200">Blog</a></li>
+        <li role="listitem"><a href="#" class="text-[var(--gray-text)] hover:text-[var(--text-color)] transition-colors duration-200">Newsletter</a></li>
+      </ul>
+      <button id="theme-toggle" aria-label="Toggle dark and light theme" class="p-2 rounded-full hover:bg-[var(--secondary-color)] focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)] transition-colors cursor-pointer">
+        <svg id="moon-icon" class="w-6 h-6 text-[var(--text-color)]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+        </svg>
+        <svg id="sun-icon" class="w-6 h-6 text-[var(--text-color)] hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+        </svg>
+      </button>
+    </nav>
+  </header>
+
+  <canvas id="background-canvas"></canvas>
+
+  <main id="main-content" class="container mx-auto px-6 sm:px-8 md:px-12 lg:px-16 xl:px-20 flex-1 flex flex-col justify-center">
+    <!-- Hero Section -->
+    <section id="about" class="flex flex-col md:flex-row items-start justify-center text-left py-20 sm:py-28">
+      <div class="max-w-7xl mx-auto w-full">
+        <h1 class="font-bold hero-title leading-tight mb-2 sm:mb-4">
+          NEURA,
+        </h1>
+        <div id="hover-container" class="animated-text-container">
+          <span id="animated-text" class="font-medium text-4xl sm:text-5xl lg:text-6xl text-[var(--gray-text)]"></span>
+        </div>
+        <p class="text-lg sm:text-xl font-medium text-[var(--gray-text)] mt-6 max-w-2xl fade-in-on-scroll" style="--delay: 0s;">
+          As the founder of Neura, I blend my passion for web development with a vision for the future of AI. My work is focused on creating intelligent, elegant, and impactful digital experiences that harness the power of machine learning to solve real-world problems.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="py-12 sm:py-16 px-6 sm:px-8 md:px-12 border-t border-[var(--border-color)]" role="navigation" aria-label="Secondary Navigation">
+    <div class="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-y-10 md:gap-y-6 text-center md:text-left">
+      <!-- Work Column -->
+      <div class="fade-in-on-scroll" style="--delay: 0.1s;">
+        <h4 class="uppercase text-base font-bold tracking-wider mb-3 pb-2 text-[var(--gray-text)]">WORK</h4>
+        <ul class="space-y-3 sm:space-y-3">
+          <li><a href="#about" class="uppercase text-sm link-group text-[var(--gray-text)] hover:text-[var(--text-color)] focus:text-[var(--text-color)]"><svg class="w-4 h-4 mr-2 link-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"></path>
+              </svg>About Neura</a></li>
+          <li><a href="#" class="uppercase text-sm link-group text-[var(--gray-text)] hover:text-[var(--text-color)] focus:text-[var(--text-color)]"><svg class="w-4 h-4 mr-2 link-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M19 3H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2V5c0-1.103-.897-2-2-2zm0 16H5V5h14v14z"></path>
+                <path d="M7 7h10v2H7zm0 4h10v2H7zm0 4h7v2H7z"></path>
+              </svg>Blog</a></li>
+          <li><a href="#" class="uppercase text-sm link-group text-[var(--gray-text)] hover:text-[var(--text-color)] focus:text-[var(--text-color)]"><svg class="w-4 h-4 mr-2 link-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M20 4H4c-1.103 0-2 .897-2 2v12c0 1.103.897 2 2 2h16c1.103 0 2-.897 2-2V6c0-1.103-.897-2-2-2zM4 18V8.414l8 4.293 8-4.293V18H4zM4 6h16l.001.001L12 10.587 4 6.001z"></path>
+              </svg>Newsletter</a></li>
+        </ul>
+      </div>
+      <!-- Connect Column -->
+      <div class="fade-in-on-scroll mt-8 md:mt-0 pt-8 md:pt-0 border-t border-[var(--border-color)] md:border-t-0" style="--delay: 0.2s;">
+        <h4 class="uppercase text-base font-bold tracking-wider mb-3 pb-2 text-[var(--gray-text)]">CONNECT</h4>
+        <ul class="space-y-3 sm:space-y-3">
+          <li><a href="#" class="uppercase text-sm link-group text-[var(--gray-text)] hover:text-[var(--text-color)] focus:text-[var(--text-color)]"><svg class="w-4 h-4 mr-2 link-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path>
+              </svg>Twitter</a></li>
+          <li><a href="#" class="uppercase text-sm link-group text-[var(--gray-text)] hover:text-[var(--text-color)] focus:text-[var(--text-color)]"><svg class="w-4 h-4 mr-2 link-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"></path>
+              </svg>YouTube</a></li>
+          <li><a href="#" class="uppercase text-sm link-group text-[var(--gray-text)] hover:text-[var(--text-color)] focus:text-[var(--text-color)]"><svg class="w-4 h-4 mr-2 link-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.454C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"></path>
+              </svg>LinkedIn</a></li>
+          <li><a href="#" class="uppercase text-sm link-group text-[var(--gray-text)] hover:text-[var(--text-color)] focus:text-[var(--text-color)]"><svg class="w-4 h-4 mr-2 link-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M20 2H4c-1.103 0-2 .897-2 2v18l4-4h14c1.103 0 2-.897 2-2V4c0-1.103-.897-2-2-2zm0 14H5.17l-.59.59L4 17.17V4h16v12z"></path>
+                <path d="M7 7h10v2H7zm0 4h7v2H7z"></path>
+              </svg>Guestbook</a></li>
+          <li><a href="#" class="uppercase text-sm link-group text-[var(--gray-text)] hover:text-[var(--text-color)] focus:text-[var(--text-color)]"><svg class="w-4 h-4 mr-2 link-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M12 2.75C6.89137 2.75 2.75 6.89137 2.75 12C2.75 17.1086 6.89137 21.25 12 21.25C17.1086 21.25 21.25 17.1086 21.25 12C21.25 6.89137 17.1086 2.75 12 2.75ZM1.25 12C1.25 6.06294 6.06294 1.25 12 1.25C17.9371 1.25 22.75 6.06294 22.75 12C22.75 17.9371 17.9371 22.75 12 22.75C6.06294 22.75 1.25 17.9371 1.25 12ZM8.39747 15.5534C8.64413 15.2206 9.11385 15.1508 9.44661 15.3975C10.175 15.9373 11.0541 16.25 12 16.25C12.9459 16.25 13.825 15.9373 14.5534 15.3975C14.8862 15.1508 15.3559 15.2206 15.6025 15.5534C15.8492 15.8862 15.7794 16.3559 15.4466 16.6025C14.4742 17.3233 13.285 17.75 12 17.75C10.715 17.75 9.5258 17.3233 8.55339 16.6025C8.22062 16.3559 8.15082 15.8862 8.39747 15.5534Z"></path>
+                <path d="M16 10.5C16 11.3284 15.5523 12 15 12C14.4477 12 14 11.3284 14 10.5C14 9.67157 14.4477 9 15 9C15.5523 9 16 9.67157 16 10.5Z"></path>
+                <path d="M10 10.5C10 11.3284 9.55229 12 9 12C8.44772 12 8 11.3284 8 10.5C8 9.67157 8.44772 9 9 9C9.55229 9 10 9.67157 10 10.5Z"></path>
+              </svg>Emoji</a></li>
+        </ul>
+      </div>
+      <!-- Weekly Learnings Column -->
+      <div class="fade-in-on-scroll mt-8 md:mt-0 pt-8 md:pt-0 border-t border-[var(--border-color)] md:border-t-0" style="--delay: 0.3s;">
+        <h4 class="uppercase text-base font-bold tracking-wider mb-3 pb-2 text-[var(--gray-text)]">NEWSLETTER</h4>
+        <div class="space-y-4">
+          <p class="text-sm text-[var(--gray-text)]">Join "The AI Edge" for weekly insights.</p>
+          <form id="newsletter-form" class="space-y-3">
+            <div>
+              <input id="newsletter-email" type="email" name="email" placeholder="your@email.com" required autocomplete="email" class="w-full bg-transparent border-b border-[var(--border-color)] text-sm text-[var(--text-color)] placeholder-[var(--gray-text)] py-2 px-0 focus:outline-none focus:border-[var(--primary-color)] transition-colors">
+            </div>
+            <button type="submit" class="uppercase text-sm w-full md:w-auto mt-4 px-6 py-2 rounded-full border border-[var(--primary-color)] text-[var(--primary-color)] font-bold hover:bg-[var(--primary-color)] hover:text-[var(--bg-color)] transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)] focus:ring-opacity-50">
+              SUBSCRIBE
+            </button>
+          </form>
+          <div id="newsletter-message" class="text-sm text-[var(--accent-color)] opacity-0 transition-opacity duration-300"></div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts at the end of the body for performance -->
+  <script>
+    // DOM Elements & Variables
+    const phrases = ["a future with AI", "intelligent solutions", "ethical technology", "innovative products", "a better tomorrow"];
+    let phraseIndex = 0;
+    const animatedTextContainer = document.getElementById('animated-text');
+    const header = document.getElementById('main-header');
+    const themeToggle = document.getElementById('theme-toggle');
+    const sunIcon = document.getElementById('sun-icon');
+    const moonIcon = document.getElementById('moon-icon');
+    const body = document.body;
+    const newsletterForm = document.getElementById('newsletter-form');
+    const newsletterMessage = document.getElementById('newsletter-message');
+    const SCROLL_THRESHOLD = 50;
+    // Canvas background animation setup
+    const canvas = document.getElementById('background-canvas');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+    let mouse = {
+      x: null,
+      y: null
+    };
+    let mouseActive = false;
+    // Set up canvas dimensions
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      initParticles();
+    }
+    window.addEventListener('resize', resizeCanvas);
+    // Mouse move event to track position and set active state
+    window.addEventListener('mousemove', (event) => {
+      mouse.x = event.x;
+      mouse.y = event.y;
+      mouseActive = true;
+    });
+    // Mouse leave event to reset mouse active state
+    window.addEventListener('mouseleave', () => {
+      mouse.x = null;
+      mouse.y = null;
+      mouseActive = false;
+    });
+    // Particle class with AI-like pulsing and movement
+    class Particle {
+      constructor(x, y, size, color) {
+        this.x = x;
+        this.y = y;
+        this.size = size;
+        this.color = color;
+        this.baseX = this.x;
+        this.baseY = this.y;
+        this.density = (Math.random() * 20) + 1;
+        this.pulse = 0; // For the pulsing effect
+        this.pulseSpeed = (Math.random() * 0.05) + 0.01;
+      }
+      draw() {
+        ctx.beginPath();
+        const currentSize = this.size + (Math.sin(this.pulse) * (this.size / 2));
+        ctx.arc(this.x, this.y, currentSize, 0, Math.PI * 2);
+        ctx.fillStyle = this.color;
+        ctx.fill();
+      }
+      update() {
+        this.pulse += this.pulseSpeed;
+        let dx = mouse.x - this.x;
+        let dy = mouse.y - this.y;
+        let distance = Math.sqrt(dx * dx + dy * dy);
+        let forceDirectionX = dx / distance;
+        let forceDirectionY = dy / distance;
+        let maxDistance = 150;
+        let force = (maxDistance - distance) / maxDistance;
+        if (force < 0) force = 0;
+        let directionX = (forceDirectionX * force * this.density) + (this.x - this.baseX) / 2000;
+        let directionY = (forceDirectionY * force * this.density) + (this.y - this.baseY) / 2000;
+        this.x -= directionX;
+        this.y -= directionY;
+      }
+    }
+    // Initialize particles
+    function initParticles() {
+      particles = [];
+      const numberOfParticles = (canvas.width * canvas.height) / 10000;
+      for (let i = 0; i < numberOfParticles; i++) {
+        let size = (Math.random() * 1.5) + 0.5;
+        let x = (Math.random() * (window.innerWidth - size * 2) + size);
+        let y = (Math.random() * (window.innerHeight - size * 2) + size);
+        particles.push(new Particle(x, y, size, `hsla(260, 100%, 75%, 0.6)`));
+      }
+    }
+    // Connect particles with lines
+    function connectParticles() {
+      for (let a = 0; a < particles.length; a++) {
+        for (let b = a; b < particles.length; b++) {
+          let dx = particles[a].x - particles[b].x;
+          let dy = particles[a].y - particles[b].y;
+          let distance = Math.sqrt(dx * dx + dy * dy);
+          let maxConnectionDistance = 120;
+          if (distance < maxConnectionDistance) {
+            const opacity = 1 - (distance / maxConnectionDistance);
+            let lineColor = `hsla(260, 100%, 75%, ${opacity * 0.5})`; // Default line color
+            // Make lines brighter near the mouse
+            if (mouseActive) {
+              let mouseDx = particles[a].x - mouse.x;
+              let mouseDy = particles[a].y - mouse.y;
+              let mouseDistance = Math.sqrt(mouseDx * mouseDx + mouseDy * mouseDy);
+              if (mouseDistance < 200) {
+                const mouseOpacity = 1 - (mouseDistance / 200);
+                lineColor = `hsla(${200 + mouseDistance * 0.1}, 100%, 70%, ${mouseOpacity})`;
+              }
+            }
+            ctx.strokeStyle = lineColor;
+            ctx.lineWidth = 0.5;
+            ctx.beginPath();
+            ctx.moveTo(particles[a].x, particles[a].y);
+            ctx.lineTo(particles[b].x, particles[b].y);
+            ctx.stroke();
+          }
+        }
+      }
+    }
+    // Animation loop
+    function animateCanvas() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      connectParticles();
+      for (let i = 0; i < particles.length; i++) {
+        particles[i].update();
+        particles[i].draw();
+      }
+      requestAnimationFrame(animateCanvas);
+    }
+    // Intersection Observer for fade-in effect on scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.1
+    });
+    // Observe all elements with the fade-in-on-scroll class
+    document.querySelectorAll('.fade-in-on-scroll').forEach(section => {
+      observer.observe(section);
+    });
+    // Sticky header with color change on scroll
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > SCROLL_THRESHOLD) {
+        header.classList.add('header-scrolled');
+      } else {
+        header.classList.remove('header-scrolled');
+      }
+    });
+    // Function to split text into spans for animation
+    function createAnimatedText(text) {
+      animatedTextContainer.innerHTML = '';
+      text.split(' ').forEach((word, index) => {
+        const span = document.createElement('span');
+        span.textContent = word;
+        span.classList.add('hover-word');
+        animatedTextContainer.appendChild(span);
+        if (index < text.split(' ').length - 1) {
+          animatedTextContainer.appendChild(document.createTextNode(' '));
+        }
+      });
+    }
+    // Hero text animation
+    async function animateText() {
+      animatedTextContainer.classList.remove('visible');
+      await new Promise(resolve => setTimeout(resolve, 500));
+      phraseIndex = (phraseIndex + 1) % phrases.length;
+      createAnimatedText(phrases[phraseIndex]);
+      animatedTextContainer.classList.add('visible');
+    }
+    // Theme toggle functionality
+    function applyTheme(theme) {
+      if (theme === 'light') {
+        body.classList.add('light-mode');
+        sunIcon.classList.remove('hidden');
+        moonIcon.classList.add('hidden');
+      } else {
+        body.classList.remove('light-mode');
+        sunIcon.classList.add('hidden');
+        moonIcon.classList.remove('hidden');
+      }
+    }
+    themeToggle.addEventListener('click', () => {
+      const currentTheme = body.classList.contains('light-mode') ? 'dark' : 'light';
+      localStorage.setItem('theme', currentTheme);
+      applyTheme(currentTheme);
+    });
+    // Newsletter form submission handling
+    newsletterForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const emailInput = document.getElementById('newsletter-email');
+      if (emailInput.checkValidity()) {
+        // Simulate form submission
+        newsletterMessage.textContent = 'Thanks for subscribing! 🎉';
+        newsletterMessage.classList.add('opacity-100');
+        setTimeout(() => {
+          newsletterMessage.classList.remove('opacity-100');
+        }, 3000);
+        emailInput.value = '';
+      }
+    });
+    // Initialize on window load
+    window.onload = function() {
+      const savedTheme = localStorage.getItem('theme') || 'dark';
+      applyTheme(savedTheme);
+      // Initial text setup and animation start
+      createAnimatedText(phrases[phraseIndex]);
+      animatedTextContainer.classList.add('visible');
+      setInterval(animateText, 3000);
+      // Initialize canvas animation
+      resizeCanvas(); // Initial call to set size and particles
+      animateCanvas();
+    };
+  </script>
+</body>
+
+</html>
